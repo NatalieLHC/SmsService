@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class NotificationServiceImpl implements NotificationService {
 
@@ -63,5 +64,6 @@ public class NotificationServiceImpl implements NotificationService {
         Pageable pageable = PageRequest.of(0,3);
         var lastUnsentNotifications = notificationRepository.findBySendDateIsNullOrderBySendDateAsc(pageable);
         send(lastUnsentNotifications);
+        log.debug("Sms sent: " + lastUnsentNotifications.getNumberOfElements());
     }
 }
