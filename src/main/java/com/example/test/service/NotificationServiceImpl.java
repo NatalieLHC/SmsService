@@ -64,6 +64,6 @@ public class NotificationServiceImpl implements NotificationService {
         Pageable pageable = PageRequest.of(0,3);
         var lastUnsentNotifications = notificationRepository.findBySendDateIsNullOrderBySendDateAsc(pageable);
         send(lastUnsentNotifications);
-        log.debug("Sms sent: " + lastUnsentNotifications.getNumberOfElements());
+        log.debug("Total number of sms sent: " + lastUnsentNotifications.getNumberOfElements());
     }
 }
